@@ -41,7 +41,7 @@ class tr31block:
             self.MAC = self.getMAC("".join(self.tempKeyBlock))
             self.finalKeyBlock.append(self.header)
             self.finalKeyBlock.append(self.encryptedKey.encode("hex"))    
-            self.finalKeyBlock.append(self.MAC.encode("hex").upper)
+            self.finalKeyBlock.append(self.MAC.encode("hex").upper())
             
         elif (self.keyBlockType == "B"):
             self.tempKeyBlock.append(self.header)
@@ -245,7 +245,7 @@ class tr31block:
         selection = raw_input("Enter Number (default=1):")
         if selection == "":
             selection = '1' 
-        strReturn = {'1':'E',2:'N',3:'S'}[selection]
+        strReturn = {'1':'E','2':'N','3':'S'}[selection]
         return strReturn
 
     def getRandomPadding(self):
