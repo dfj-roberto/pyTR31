@@ -41,7 +41,7 @@ class tr31block:
             self.MAC = self.getMAC("".join(self.tempKeyBlock))
             self.finalKeyBlock.append(self.header)
             self.finalKeyBlock.append(self.encryptedKey.encode("hex"))    
-            self.finalKeyBlock.append(self.MAC.encode("hex").upper)
+            self.finalKeyBlock.append(self.MAC.encode("hex").upper())
             
         elif (self.keyBlockType == "B"):
             self.tempKeyBlock.append(self.header)
@@ -142,13 +142,14 @@ class tr31block:
         print "20)PIN verification, KPV, other algorithm"
         print "21)PIN verification, IBM 3624"
         print "22)PIN Verification, VISA PVV"
+        print "23)TR31 Key Block Protection Key"
         selection = raw_input("Enter a number:(default = 19): ")
         if selection == '':
             selection = '19'
         strReturn = {
 "1":"B0","2":"C0","3":"D0","4": "E0","5":"E1","6":"E2","7":"E3","8":"E4","9":"E5","10":"E6",
 "11": "I0","12": "K0","13": "M0","14": "M1","15":"M2","16":"M3","17":"M4","18":"M5","19":"P0",
-"20":"V0","21":"V1","22":"V2"
+"20":"V0","21":"V1","22":"V2","23":"K1"
 }[selection]
         return strReturn
 
@@ -245,12 +246,12 @@ class tr31block:
         selection = raw_input("Enter Number (default=1):")
         if selection == "":
             selection = '1' 
-        strReturn = {'1':'E',2:'N',3:'S'}[selection]
+        strReturn = {'1':'E','2':'N','3':'S'}[selection]
         return strReturn
 
     def getRandomPadding(self):
         selection = raw_input("Enter random padding value: (hex values):")
-        return selection.decode("hex")
+        return "".join(selection.decode("hex"))
 
 def main():
     try:
